@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->smallInteger('gender')->default(0);
-            $table->string('phone')->unique();
-            $table->string('emergency_phone')->unique();
+            $table->string('phone')->nullable();
+            $table->string('emergency_phone')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('running_club')->nullable();

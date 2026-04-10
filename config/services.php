@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'bcc' => [
+        'merchant' => env('BCC_MERCHANT'),
+        'url' => env('BCC_REQUEST_URL'),
+        'merch_name' => env('BCC_MERCH_NAME'),
+        'merch_url' => env('BCC_MERCH_URL'),
+        'backref' => env('BCC_BACKREF'),
+        'notify_url' => env('BCC_NOTIFY_URL'),
+    ]
+
 ];
