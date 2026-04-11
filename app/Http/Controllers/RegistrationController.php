@@ -10,7 +10,6 @@ use GuzzleHttp\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -21,7 +20,7 @@ class RegistrationController extends Controller
     /**
      * Show the registration form.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
         $distances = SportEventDistance::where('sport_event_id', self::SPORT_EVENT_ID)
             ->where('status', 1)
@@ -29,59 +28,53 @@ class RegistrationController extends Controller
 
         $sizes = ['XS', 'S', 'M', 'L', 'XL'];
 
-        return view('auth.register', compact('distances', 'sizes'));
+        $selectedDistanceId = $request->query('distance_id');
+
+        return view('auth.register', compact('distances', 'sizes', 'selectedDistanceId'));
     }
 
-    /**
-     * Step 1: validate → session → create user (status: created) → create order → redirect to payment.
-     */
     public function store(RegistrationRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $distance = SportEventDistance::findOrFail($data['distance']);
 
-            try {
+        try {
             DB::beginTransaction();
 
-            // Create user with status "created"
             $user = User::create([
-                'name'                          => $data['name'],
-                'email'                         => $data['email'],
-                'gender'                        => $data['gender'],
-                'phone'                         => $data['phone'],
-                'emergency_phone'               => $data['emergency_number'],
-                'country'                       => $data['country'],
-                'city'                          => $data['city'],
-                'running_club'                  => $data['running_club'] ?? null,
-                'id_intra'                      => $data['id_intra'] ?? null,
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'gender' => $data['gender'],
+                'phone' => $data['phone'],
+                'emergency_phone' => $data['emergency_number'],
+                'country' => $data['country'],
+                'city' => $data['city'],
+                'running_club' => $data['running_club'] ?? null,
+                'id_intra' => $data['id_intra'] ?? null,
                 'confirmation_of_qualification' => $data['confirmation_of_qualification'] ?? null,
-                't_shirt'                       => $data['t_shirt'],
-                'status'                        => User::STATUS_CREATED,
-                'password'                      => bcrypt(Str::random(16)), // temporary password
+                't_shirt' => $data['t_shirt'],
+                'status' => User::STATUS_CREATED,
+                'password' => bcrypt(Str::random(16)), // temporary password
             ]);
 
-            // Create order
             $order = Order::create([
-                'sport_event_id'          => self::SPORT_EVENT_ID,
+                'sport_event_id' => self::SPORT_EVENT_ID,
                 'sport_event_distance_id' => $distance->id,
-                'user_id'                 => $user->id,
-                'price'                   => $distance->price,
-                'status'                  => Order::STATUS_PENDING,
+                'user_id' => $user->id,
+                'price' => $distance->price,
+                'status' => Order::STATUS_PENDING,
             ]);
 
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
+
             return back()->withInput()->withErrors(['general' => 'An error occurred. Please try again. ', $e->getMessage()]);
         }
-
 
         return redirect()->route('register.payment', $order);
     }
 
-    /**
-     * Step 2: Show payment page with order summary.
-     */
     public function payment(Order $order): View
     {
         $order->load(['user', 'distance']);
@@ -106,8 +99,8 @@ class RegistrationController extends Controller
                     'AMOUNT' => $order->price,
                     'CURRENCY' => '398',
                     'ORDER' => $order->id,
-                    'DESC' => 'Registration '. $order->distance->name,
-                    'MERCHANT'  => config('services.bcc.merchant_id'),
+                    'DESC' => 'Registration '.$order->distance->name,
+                    'MERCHANT' => config('services.bcc.merchant_id'),
                     'MERCH_NAME' => config('services.bcc.merch_name'),
                     'MERCH_URL' => config('services.bcc.merch_url'),
                     'COUNTRY' => 'KZ',
@@ -125,6 +118,7 @@ class RegistrationController extends Controller
             $ree = new \GuzzleHttp\Psr7\Request('POST', 'https://test3ds.bcc.kz:5445/cgi-bin/cgi_link');
             $res = $client->sendAsync($ree, $options)->wait();
             echo $res->getBody();
+
             return null;
         } catch (\Throwable $e) {
             return back()->withErrors(['payment' => 'Payment service unavailable. Please try again later.', $e->getMessage()]);
