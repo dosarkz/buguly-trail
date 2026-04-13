@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistrationRequest;
+use App\Mail\RegistrationCredentialsMail;
 use App\Models\Order;
 use App\Models\SportEventDistance;
 use App\Models\User;
@@ -10,12 +11,13 @@ use GuzzleHttp\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class RegistrationController extends Controller
 {
-    private const SPORT_EVENT_ID = 1;
+    private const int SPORT_EVENT_ID = 1;
 
     /**
      * Show the registration form.
@@ -40,6 +42,7 @@ class RegistrationController extends Controller
 
         try {
             DB::beginTransaction();
+            $temporaryPassword = Str::random(16);
 
             $user = User::create([
                 'name' => $data['name'],
@@ -54,7 +57,7 @@ class RegistrationController extends Controller
                 'confirmation_of_qualification' => $data['confirmation_of_qualification'] ?? null,
                 't_shirt' => $data['t_shirt'],
                 'status' => User::STATUS_CREATED,
-                'password' => bcrypt(Str::random(16)), // temporary password
+                'password' => bcrypt($temporaryPassword), // temporary password
             ]);
 
             $order = Order::create([
@@ -66,6 +69,13 @@ class RegistrationController extends Controller
             ]);
 
             DB::commit();
+
+            Mail::to($user->email)->queue(new RegistrationCredentialsMail(
+                login: $user->email,
+                password: $temporaryPassword,
+                distance: $distance->name,
+                date: now()->format('d.m.Y H:i')
+            ));
         } catch (\Throwable $e) {
             DB::rollBack();
 
@@ -85,7 +95,7 @@ class RegistrationController extends Controller
     /**
      * Step 2: POST to external bank, then mark order paid.
      */
-    public function pay(Request $request, Order $order)
+    public function pay(Request $request, Order $order): ?RedirectResponse
     {
         if ($order->status !== Order::STATUS_PENDING) {
             return redirect()->route('registration.success', $order);
@@ -93,7 +103,21 @@ class RegistrationController extends Controller
 
         try {
 
-            $client = new Client(['verify' => false]);
+            $client = new Client(['verify' => false, 'timeout' => 300]);
+            $date = date('YmdHis');
+
+            $key = '6BB0AC02E47BDF73D98FEB777F3B5294';
+            $data = sprintf('6%s339813%s12%s8%s2KZ1014%s1032F2B2DD7E603A7AAF5E1BC35DEE1F6C9A',
+                $order->price,
+                $order->id,
+                config('services.bcc.merchant_id'),
+                '88888881',
+                $date,
+            );
+
+            $decodedKey = pack('H*', $key);
+            $psign = hash_hmac('sha1', $data, $decodedKey);
+
             $options = [
                 'form_params' => [
                     'AMOUNT' => $order->price,
@@ -105,11 +129,14 @@ class RegistrationController extends Controller
                     'MERCH_URL' => config('services.bcc.merch_url'),
                     'COUNTRY' => 'KZ',
                     'BRANDS' => 'VISA, Mastercard',
-                    'TERMINAL' => '88888881',
+                    'TERMINAL' => '88888888',
+                    'TIMESTAMP' => $date,
                     'MERCH_GMT' => '0',
                     'TRTYPE' => '0',
                     'BACKREF' => config('services.bcc.backref'),
                     'LANG' => 'ru',
+                    'NONCE' => 'F2B2DD7E603A7AAF5E1BC35DEE1F6C9A',
+                    'P_SIGN' => $psign,
                     'MK_TOKEN' => 'MERCH',
                     'NOTIFY_URL' => config('services.bcc.notify_url'),
                     'CLIENT_IP' => $request->ip(),

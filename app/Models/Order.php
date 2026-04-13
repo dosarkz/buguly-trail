@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -6,9 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
-    public const STATUS_PENDING = 0;
-    public const STATUS_PAID    = 1;
-    public const STATUS_FAILED  = 2;
+    public const int STATUS_PENDING = 0;
+
+    public const int STATUS_PAID = 1;
+
+    public const int STATUS_FAILED = 2;
 
     protected $fillable = [
         'sport_event_id',
@@ -21,6 +24,7 @@ class Order extends Model
 
     protected $casts = [
         'paid_at' => 'datetime',
+        'price' => 'decimal:2',
     ];
 
     public function user(): BelongsTo

@@ -3,23 +3,20 @@
 @section('title', __('Home'))
 
 @section('content')
-    <section class="bg-cover bg-center" style="background-image: url('{{asset('/storage/images/bg_main_1.jpg')}}');min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:80px;padding-left:24px;padding-right:24px;padding-top:24px;position:relative;">
-        <div style="max-width:1200px;margin:0 auto;width:100%;">
+    <section class="hero-section hero-bg" style="background-image: url('{{asset('/storage/images/bg_main_1.jpg')}}');">
+        <div class="container-wide">
             <!-- Event badge -->
             <div class="fade-up d1" style="margin-bottom:16px;">
-            <span style="display:inline-flex;align-items:center;gap:6px;
-            background:rgb(255 255 255);
-            backdrop-filter:blur(8px);
-            color:#676767;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:999px;">
-                 {{ __('July 12–13, 2026 · Qarqaraly, Kazakhstan') }}
-            </span>
+                <span class="badge-white">
+                     {{ __('July 12–13, 2026 · Qarqaraly, Kazakhstan') }}
+                </span>
             </div>
 
-            <h1 class="font-display fade-up d2" style="color:white;font-size:clamp(4rem,11vw,9.5rem);line-height:1;margin-bottom:16px;">
+            <h1 class="font-display fade-up d2 hero-title">
                 @lang('RUN THE WILD')
             </h1>
 
-            <p class="fade-up d3" style="color:rgba(255,255,255,.78);font-size:1.1rem;max-width:520px;line-height:1.7;margin-bottom:32px;">
+            <p class="fade-up d3 hero-subtitle">
                 {{ __('Six distances. One mountain range.') }}
             </p>
 
@@ -29,96 +26,101 @@
             </div>
 
             <!-- Stats strip -->
-            <div class="fade-up d4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.2);border-radius:18px;overflow:hidden;backdrop-filter:blur(8px);">
-                <div style="background:rgba(255,255,255,.1);padding:18px 20px;text-align:center;">
-                    <div class="font-display" style="font-size:2.2rem;color:white;">800+</div>
-                    <div style="color:rgba(255,255,255,.55);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;">{{ __('Participants') }}</div>
+            <div class="fade-up d4 stats-strip">
+                <div class="stat-box">
+                    <div class="font-display stat-value">800+</div>
+                    <div class="stat-label">{{ __('Participants') }}</div>
                 </div>
-                <div style="background:rgba(255,255,255,.1);padding:18px 20px;text-align:center;">
-                    <div class="font-display" style="font-size:2.2rem;color:white;">50 km</div>
-                    <div style="color:rgba(255,255,255,.55);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;">{{ __('Max Distance') }}</div>
+                <div class="stat-box">
+                    <div class="font-display stat-value">50 km</div>
+                    <div class="stat-label">{{ __('Max Distance') }}</div>
                 </div>
-                <div style="background:rgba(255,255,255,.1);padding:18px 20px;text-align:center;">
-                    <div class="font-display" style="font-size:2.2rem;color:white;">996 m</div>
-                    <div style="color:rgba(255,255,255,.55);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;">{{ __('Max Elevation') }}</div>
+                <div class="stat-box">
+                    <div class="font-display stat-value">996 m</div>
+                    <div class="stat-label">{{ __('Max Elevation') }}</div>
                 </div>
-                <div style="background:rgba(255,255,255,.1);padding:18px 20px;text-align:center;">
-                    <div class="font-display" style="font-size:2.2rem;color:white;">6</div>
-                    <div style="color:rgba(255,255,255,.55);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-top:2px;">{{ __('Distances') }}</div>
+                <div class="stat-box">
+                    <div class="font-display stat-value">6</div>
+                    <div class="stat-label">{{ __('Distances') }}</div>
                 </div>
             </div>
         </div>
 
         <!-- Scroll indicator -->
-        <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;opacity:.5;">
-            <span style="color:white;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;">{{ __('Scroll') }}</span>
-            <div style="width:1px;height:32px;background:rgba(255,255,255,.5);animation:pulse 2s infinite;"></div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">{{ __('Scroll') }}</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
     <!-- ===== ABOUT ===== -->
-    <section id="about" style="background:white;padding:88px 24px;">
-        <div style="max-width:1200px;margin:0 auto;">
-            <div style="text-align:center;margin-bottom:60px;">
-                <p style="color:#2d7d2b;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;">🌿 {{ __('What is Bugyly Trail?') }}</p>
-                <h2 class="font-display" style="font-size:clamp(2.8rem,6vw,5rem);color:#2b3a2f;line-height:1.05;margin-bottom:16px;">@lang('WHERE ADVENTURE BEGINS AT SUNRISE')</h2>
-                <p style="color:#6b7280;max-width:580px;margin:0 auto;line-height:1.75;font-size:.95rem;">
+    <section id="about" class="section-white">
+        <div class="container-wide">
+            <div class="section-header">
+                <p class="section-badge">🌿 {{ __('What is Bugyly Trail?') }}</p>
+                <h2 class="font-display section-title">@lang('WHERE ADVENTURE BEGINS AT SUNRISE')</h2>
+                <p class="section-desc">
                     {{ __('Bugyly Trail description') }}
                 </p>
             </div>
 
             <!-- Feature cards -->
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:20px;padding:36px;transition:all .3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,125,43,.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-                    <div style="font-size:2.5rem;margin-bottom:16px;">🏕</div>
-                    <h3 class="font-display" style="font-size:1.6rem;color:#2b3a2f;margin-bottom:10px;">{{ __('Supported Aid Stations') }}</h3>
-                    <p style="color:#6b7280;font-size:.88rem;line-height:1.7;">{{ __('Supported Aid Stations Description') }}</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏕</div>
+                    <h3 class="font-display feature-title">{{ __('Supported Aid Stations') }}</h3>
+                    <p class="feature-desc">{{ __('Supported Aid Stations Description') }}</p>
                 </div>
-                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:20px;padding:36px;transition:all .3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,125,43,.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-                    <div style="font-size:2.5rem;margin-bottom:16px;">🗻</div>
-                    <h3 class="font-display" style="font-size:1.6rem;color:#2b3a2f;margin-bottom:10px;">{{ __('Certified Terrain') }}</h3>
-                    <p style="color:#6b7280;font-size:.88rem;line-height:1.7;">{{ __('Certified Terrain Description') }}</p>
+                <div class="feature-card">
+                    <div class="feature-icon">🗻</div>
+                    <h3 class="font-display feature-title">{{ __('Certified Terrain') }}</h3>
+                    <p class="feature-desc">{{ __('Certified Terrain Description') }}</p>
                 </div>
-                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:20px;padding:36px;transition:all .3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,125,43,.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-                    <div style="font-size:2.5rem;margin-bottom:16px;">🎽</div>
-                    <h3 class="font-display" style="font-size:1.6rem;color:#2b3a2f;margin-bottom:10px;">{{ __('Finisher Rewards') }}</h3>
-                    <p style="color:#6b7280;font-size:.88rem;line-height:1.7;">{{ __('Finisher Rewards Description') }}</p>
+                <div class="feature-card">
+                    <div class="feature-icon">🎽</div>
+                    <h3 class="font-display feature-title">{{ __('Finisher Rewards') }}</h3>
+                    <p class="feature-desc">{{ __('Finisher Rewards Description') }}</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===== GALLERY ===== -->
-    <section id="gallery" style="background:#2b3a2f;padding:88px 24px;">
-        <div style="max-width:1200px;margin:0 auto;">
-            <p style="color:#7ab878;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px;">{{ __('Moments on the mountain') }}</p>
-            <h2 class="font-display" style="font-size:clamp(2.8rem,6vw,5rem);color:white;line-height:1.05;margin-bottom:36px;">@lang('FEEL THE ATMOSPHERE')</h2>
+    <section id="gallery" class="section-dark">
+        <div class="container-wide">
+            <p class="section-badge-alt">{{ __('Moments on the mountain') }}</p>
+            <h2 class="font-display section-title-white">@lang('FEEL THE ATMOSPHERE')</h2>
 
-            <!-- Main 4-grid -->
+            <!-- Unified Photo Grid -->
             <div class="gallery-grid">
-                <div class="g1 gallery-item">
+                <div class="gallery-item g-large">
                     <img src="https://images.unsplash.com/photo-1594882645126-14ac19a85b41?w=900&q=80" alt="Trail runner in mountains">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">#BugylTrail</span>
+                    </div>
                 </div>
-                <div class="g2 gallery-item">
+                <div class="gallery-item g-tall">
                     <img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=700&q=80" alt="Runner on ridge">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">#Skyrunning</span>
+                    </div>
                 </div>
-                <div class="g3 gallery-item">
+                <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&q=80" alt="Mountain trail view">
                 </div>
-                <div class="g4 gallery-item">
+                <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80" alt="Race finish">
                 </div>
-            </div>
-
-            <!-- Bottom 3-grid -->
-            <div class="gallery-bottom">
-                <div class="gallery-bottom-item">
+                <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80" alt="Mountain landscape">
                 </div>
-                <div class="gallery-bottom-item">
+                <div class="gallery-item g-wide">
                     <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&q=80" alt="Dawn running">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag">{{ __('Feel the energy') }}</span>
+                    </div>
                 </div>
-                <div class="gallery-bottom-item">
+                <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1543941849-ab7a0c56ec88?w=600&q=80" alt="Forest trail">
                 </div>
             </div>
@@ -140,8 +142,8 @@
             </p>
 
             <!-- Desktop table -->
-            <div style="overflow:hidden;border-radius:20px;border:1px solid #e5e7eb;box-shadow:0 2px 20px rgba(0,0,0,.06);">
-                <table style="width:100%;border-collapse:collapse;font-size:.86rem;">
+            <div class="table-container hidden-mobile" style="overflow-x:auto;border-radius:20px;border:1px solid #e5e7eb;box-shadow:0 2px 20px rgba(0,0,0,.06);">
+                <table style="width:100%;min-width:800px;border-collapse:collapse;font-size:.86rem;">
                     <thead>
                     <tr style="background:#2b3a2f;color:white;">
                         <th style="text-align:left;padding:16px 20px;font-weight:600;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;">#</th>
@@ -156,96 +158,189 @@
                     <tbody>
                     <!-- Route 1: Ultra -->
                     <tr class="route-row" style="border-bottom:1px solid #f3f4f6;">
-                        <td style="padding:18px 20px;color:#9ca3af;font-size:.75rem;font-family:monospace;">01</td>
-                        <td style="padding:18px 20px;">
+                        <td style="color:#9ca3af;font-size:.75rem;font-family:monospace;">01</td>
+                        <td >
                             <div style="font-weight:700;color:#2b3a2f;">Bugyly Ultra Trail</div>
                             <span style="background:#fee2e2;color:#dc2626;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:4px;display:inline-block;">ULTRA</span>
                         </td>
-                        <td style="padding:18px 20px;font-weight:700;color:#2d7d2b;font-size:1rem;">50 km +</td>
-                        <td style="padding:18px 20px;font-weight:700;font-size:1rem;color:#2b3a2f;">21 500 ₸</td>
-                        <td style="padding:18px 20px;">
-                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:999px;">100 {{ __('slots') }}</span>
+                        <td style="font-weight:700;color:#2d7d2b;font-size:1rem;">50 km +</td>
+                        <td style="font-weight:700;font-size:1rem;color:#2b3a2f;">21 500 ₸</td>
+                        <td >
+                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 5px;border-radius:999px;">100 {{ __('slots') }}</span>
                         </td>
-                        <td style="padding:18px 20px;color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('~50 km · 18+ · 5 aid stations · +996 m elevation') }}</td>
-                        <td style="padding:18px 20px;"><a href="{{ route('register', ['distance_id' => 1]) }}" class="btn-sm">{{ __('Register') }}</a></td>
+                        <td style="color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('~50 km · 18+ · 5 aid stations · +996 m elevation') }}</td>
+                        <td ><a href="{{ route('register', ['distance_id' => 1]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded">{{ __('Participate') }}</a></td>
                     </tr>
                     <!-- Route 2: Forest -->
                     <tr class="route-row" style="border-bottom:1px solid #f3f4f6;">
-                        <td style="padding:18px 20px;color:#9ca3af;font-size:.75rem;font-family:monospace;">02</td>
-                        <td style="padding:18px 20px;">
+                        <td style="color:#9ca3af;font-size:.75rem;font-family:monospace;">02</td>
+                        <td >
                             <div style="font-weight:700;color:#2b3a2f;">Bugyly Forest Trail</div>
                             <span style="background:#fff7ed;color:#ea580c;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:4px;display:inline-block;">FOREST</span>
                         </td>
-                        <td style="padding:18px 20px;font-weight:700;color:#2d7d2b;font-size:1rem;">21 km +</td>
-                        <td style="padding:18px 20px;font-weight:700;font-size:1rem;color:#2b3a2f;">19 000 ₸</td>
-                        <td style="padding:18px 20px;">
-                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:999px;">250 {{ __('slots') }}</span>
+                        <td style="font-weight:700;color:#2d7d2b;font-size:1rem;">21 km +</td>
+                        <td style="font-weight:700;font-size:1rem;color:#2b3a2f;">19 000 ₸</td>
+                        <td >
+                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 5px;border-radius:999px;">250 {{ __('slots') }}</span>
                         </td>
-                        <td style="padding:18px 20px;color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('~21 km · 18+ · 2 aid stations · +500 m elevation') }}</td>
-                        <td style="padding:18px 20px;"><a href="{{ route('register', ['distance_id' => 2]) }}" class="btn-sm">{{ __('Register') }}</a></td>
+                        <td style="color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('~21 km · 18+ · 2 aid stations · +500 m elevation') }}</td>
+                        <td ><a href="{{ route('register', ['distance_id' => 2]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded">{{ __('Participate') }}</a></td>
                     </tr>
                     <!-- Route 3: Shaitankol -->
                     <tr class="route-row" style="border-bottom:1px solid #f3f4f6;">
-                        <td style="padding:18px 20px;color:#9ca3af;font-size:.75rem;font-family:monospace;">03</td>
-                        <td style="padding:18px 20px;">
+                        <td style="color:#9ca3af;font-size:.75rem;font-family:monospace;">03</td>
+                        <td >
                             <div style="font-weight:700;color:#2b3a2f;">Shaitankol Trail</div>
                             <span style="background:#fefce8;color:#ca8a04;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:4px;display:inline-block;">TRAIL</span>
                         </td>
-                        <td style="padding:18px 20px;font-weight:700;color:#2d7d2b;font-size:1rem;">10 km +</td>
-                        <td style="padding:18px 20px;font-weight:700;font-size:1rem;color:#2b3a2f;">14 000 ₸</td>
-                        <td style="padding:18px 20px;">
-                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:999px;">320 {{ __('slots') }}</span>
+                        <td style="font-weight:700;color:#2d7d2b;font-size:1rem;">10 km +</td>
+                        <td style="font-weight:700;font-size:1rem;color:#2b3a2f;">14 000 ₸</td>
+                        <td style="">
+                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 5px;border-radius:999px;">320 {{ __('slots') }}</span>
                         </td>
-                        <td style="padding:18px 20px;color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('~10 km · 18+ · 1 aid station · +300 m elevation') }}</td>
-                        <td style="padding:18px 20px;"><a href="{{ route('register', ['distance_id' => 3]) }}" class="btn-sm">{{ __('Register') }}</a></td>
+                        <td style="color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('~10 km · 18+ · 1 aid station · +300 m elevation') }}</td>
+                        <td style=""><a href="{{ route('register', ['distance_id' => 3]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded">{{ __('Participate') }}</a></td>
                     </tr>
                     <!-- Route 4: Young -->
                     <tr class="route-row" style="border-bottom:1px solid #f3f4f6;">
-                        <td style="padding:18px 20px;color:#9ca3af;font-size:.75rem;font-family:monospace;">04</td>
-                        <td style="padding:18px 20px;">
+                        <td style="color:#9ca3af;font-size:.75rem;font-family:monospace;">04</td>
+                        <td style="">
                             <div style="font-weight:700;color:#2b3a2f;">Young Trail</div>
                             <span style="background:#f0fdf4;color:#16a34a;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:4px;display:inline-block;">YOUTH</span>
                         </td>
-                        <td style="padding:18px 20px;font-weight:700;color:#2d7d2b;font-size:1rem;">5 km</td>
-                        <td style="padding:18px 20px;font-weight:700;font-size:1rem;color:#2b3a2f;">5 000 ₸</td>
-                        <td style="padding:18px 20px;">
-                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:999px;">50 {{ __('slots') }}</span>
+                        <td style="font-weight:700;color:#2d7d2b;font-size:1rem;">5 km</td>
+                        <td style="font-weight:700;font-size:1rem;color:#2b3a2f;">5 000 ₸</td>
+                        <td style="">
+                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 5px;border-radius:999px;">50 {{ __('slots') }}</span>
                         </td>
-                        <td style="padding:18px 20px;color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('Teens 13–17 · +30 m elevation gain') }}</td>
-                        <td style="padding:18px 20px;"><a href="{{ route('register', ['distance_id' => 4]) }}" class="btn-sm">{{ __('Register') }}</a></td>
+                        <td style="color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('Teens 13–17 · +30 m elevation gain') }}</td>
+                        <td style=""><a href="{{ route('register', ['distance_id' => 4]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded">{{ __('Participate') }}</a></td>
                     </tr>
                     <!-- Route 5: Kids -->
                     <tr class="route-row" style="border-bottom:1px solid #f3f4f6;">
-                        <td style="padding:18px 20px;color:#9ca3af;font-size:.75rem;font-family:monospace;">05</td>
-                        <td style="padding:18px 20px;">
+                        <td style="color:#9ca3af;font-size:.75rem;font-family:monospace;">05</td>
+                        <td style="">
                             <div style="font-weight:700;color:#2b3a2f;">Kids Trail</div>
                             <span style="background:#eff6ff;color:#2563eb;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:4px;display:inline-block;">KIDS</span>
                         </td>
-                        <td style="padding:18px 20px;font-weight:700;color:#2d7d2b;font-size:1rem;">1 km</td>
-                        <td style="padding:18px 20px;font-weight:700;font-size:1rem;color:#2b3a2f;">3 000 ₸</td>
-                        <td style="padding:18px 20px;">
-                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:999px;">30 {{ __('slots') }}</span>
+                        <td style="font-weight:700;color:#2d7d2b;font-size:1rem;">1 km</td>
+                        <td style="font-weight:700;font-size:1rem;color:#2b3a2f;">3 000 ₸</td>
+                        <td style="">
+                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 5px;border-radius:999px;">30 {{ __('slots') }}</span>
                         </td>
-                        <td style="padding:18px 20px;color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('Children 9–12 · +10 m elevation gain') }}</td>
-                        <td style="padding:18px 20px;"><a href="{{ route('register', ['distance_id' => 5]) }}" class="btn-sm">{{ __('Register') }}</a></td>
+                        <td style="color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('Children 9–12 · +10 m elevation gain') }}</td>
+                        <td style=""><a href="{{ route('register', ['distance_id' => 5]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded">{{ __('Participate') }}</a></td>
                     </tr>
                     <!-- Route 6: Nordic Walking -->
                     <tr class="route-row">
-                        <td style="padding:18px 20px;color:#9ca3af;font-size:.75rem;font-family:monospace;">06</td>
-                        <td style="padding:18px 20px;">
+                        <td style="color:#9ca3af;font-size:.75rem;font-family:monospace;">06</td>
+                        <td style="">
                             <div style="font-weight:700;color:#2b3a2f;">Nordic Walking</div>
                             <span style="background:#f5f3ff;color:#7c3aed;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:4px;display:inline-block;">NORDIC</span>
                         </td>
-                        <td style="padding:18px 20px;font-weight:700;color:#2d7d2b;font-size:1rem;">10 km +</td>
-                        <td style="padding:18px 20px;font-weight:700;font-size:1rem;color:#2b3a2f;">12 000 ₸</td>
-                        <td style="padding:18px 20px;">
-                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:999px;">50 {{ __('slots') }}</span>
+                        <td style="font-weight:700;color:#2d7d2b;font-size:1rem;">10 km +</td>
+                        <td style="font-weight:700;font-size:1rem;color:#2b3a2f;">12 000 ₸</td>
+                        <td >
+                            <span style="background:#f0f7f0;color:#174d18;border:1px solid #aed5ac;font-size:.72rem;font-weight:600;padding:4px 5px;border-radius:999px;">50 {{ __('slots') }}</span>
                         </td>
-                        <td style="padding:18px 20px;color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('~10 km · 18+ · Nordic Walking · 1 aid station · +300 m') }}</td>
-                        <td style="padding:18px 20px;"><a href="{{ route('register', ['distance_id' => 6]) }}" class="btn-sm">{{ __('Register') }}</a></td>
+                        <td style="color:#6b7280;font-size:.88rem;max-width:260px;">{{ __('~10 km · 18+ · Nordic Walking · 1 aid station · +300 m') }}</td>
+                        <td ><a href="{{ route('register', ['distance_id' => 6]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded">{{ __('Participate') }}</a></td>
                     </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Mobile Cards -->
+            <div class="route-cards-mobile show-mobile">
+                <!-- Card 1 -->
+                <div class="route-card">
+                    <div class="route-card-header">
+                        <div class="route-card-title">Bugyly Ultra Trail</div>
+                        <span class="route-card-badge" style="background:#fee2e2;color:#dc2626;">ULTRA</span>
+                    </div>
+                    <div class="route-card-info">
+                        <div class="route-card-distance">50 km +</div>
+                        <div class="route-card-price">21 500 ₸</div>
+                    </div>
+                    <span class="route-card-slots">100 {{ __('slots') }}</span>
+                    <p class="route-card-notes">{{ __('~50 km · 18+ · 5 aid stations · +996 m elevation') }}</p>
+                    <a href="{{ route('register', ['distance_id' => 1]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="route-card">
+                    <div class="route-card-header">
+                        <div class="route-card-title">Bugyly Forest Trail</div>
+                        <span class="route-card-badge" style="background:#fff7ed;color:#ea580c;">FOREST</span>
+                    </div>
+                    <div class="route-card-info">
+                        <div class="route-card-distance">21 km +</div>
+                        <div class="route-card-price">19 000 ₸</div>
+                    </div>
+                    <span class="route-card-slots">250 {{ __('slots') }}</span>
+                    <p class="route-card-notes">{{ __('~21 km · 18+ · 2 aid stations · +500 m elevation') }}</p>
+                    <a href="{{ route('register', ['distance_id' => 2]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="route-card">
+                    <div class="route-card-header">
+                        <div class="route-card-title">Shaitankol Trail</div>
+                        <span class="route-card-badge" style="background:#fefce8;color:#ca8a04;">TRAIL</span>
+                    </div>
+                    <div class="route-card-info">
+                        <div class="route-card-distance">10 km +</div>
+                        <div class="route-card-price">14 000 ₸</div>
+                    </div>
+                    <span class="route-card-slots">320 {{ __('slots') }}</span>
+                    <p class="route-card-notes">{{ __('~10 km · 18+ · 1 aid station · +300 m elevation') }}</p>
+                    <a href="{{ route('register', ['distance_id' => 3]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="route-card">
+                    <div class="route-card-header">
+                        <div class="route-card-title">Young Trail</div>
+                        <span class="route-card-badge" style="background:#f0fdf4;color:#16a34a;">YOUTH</span>
+                    </div>
+                    <div class="route-card-info">
+                        <div class="route-card-distance">5 km</div>
+                        <div class="route-card-price">5 000 ₸</div>
+                    </div>
+                    <span class="route-card-slots">50 {{ __('slots') }}</span>
+                    <p class="route-card-notes">{{ __('Teens 13–17 · +30 m elevation gain') }}</p>
+                    <a href="{{ route('register', ['distance_id' => 4]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="route-card">
+                    <div class="route-card-header">
+                        <div class="route-card-title">Kids Trail</div>
+                        <span class="route-card-badge" style="background:#eff6ff;color:#2563eb;">KIDS</span>
+                    </div>
+                    <div class="route-card-info">
+                        <div class="route-card-distance">1 km</div>
+                        <div class="route-card-price">3 000 ₸</div>
+                    </div>
+                    <span class="route-card-slots">30 {{ __('slots') }}</span>
+                    <p class="route-card-notes">{{ __('Children 9–12 · +10 m elevation gain') }}</p>
+                    <a href="{{ route('register', ['distance_id' => 5]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="route-card">
+                    <div class="route-card-header">
+                        <div class="route-card-title">Nordic Walking</div>
+                        <span class="route-card-badge" style="background:#f5f3ff;color:#7c3aed;">NORDIC</span>
+                    </div>
+                    <div class="route-card-info">
+                        <div class="route-card-distance">10 km +</div>
+                        <div class="route-card-price">12 000 ₸</div>
+                    </div>
+                    <span class="route-card-slots">50 {{ __('slots') }}</span>
+                    <p class="route-card-notes">{{ __('~10 km · All ages · 1 aid station · +300 m elevation') }}</p>
+                    <a href="{{ route('register', ['distance_id' => 6]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                </div>
             </div>
 
             <p style="text-align:center;margin-top:16px;color:#9ca3af;font-size:.75rem;">
@@ -253,7 +348,7 @@
             </p>
 
             <!-- Elevation profile cards -->
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:52px;">
+            <div class="hidden-mobile" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:52px;">
                 <!-- Ultra -->
                 <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:28px;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
@@ -298,6 +393,54 @@
                     </div>
                     <svg viewBox="0 0 200 55" style="width:100%;height:52px;">
                         <defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eab308" stop-opacity=".25"/><stop offset="100%" stop-color="#eab308" stop-opacity="0"/></linearGradient></defs>
+                        <polygon points="0,54 35,42 70,28 100,34 140,20 175,36 200,54" fill="url(#g3)"/>
+                        <polyline points="0,54 35,42 70,28 100,34 140,20 175,36 200,54" fill="none" stroke="#eab308" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="elevation-cards-mobile show-mobile" style="margin-top: 32px;">
+                <!-- Ultra -->
+                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:24px;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+                        <span class="font-display" style="font-size:1.35rem;color:#2b3a2f;">Bugyly Ultra</span>
+                        <span style="background:#fee2e2;color:#dc2626;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;">50 km</span>
+                    </div>
+                    <div style="display:flex;gap:24px;margin-bottom:18px;">
+                        <div><span style="color:#9ca3af;font-size:.7rem;display:block;text-transform:uppercase;letter-spacing:.07em;">{{ __('Elevation') }}</span><span style="font-weight:700;color:#2b3a2f;font-size:1.1rem;">+996 m</span></div>
+                        <div><span style="color:#9ca3af;font-size:.7rem;display:block;text-transform:uppercase;letter-spacing:.07em;">{{ __('Aid Stations') }}</span><span style="font-weight:700;color:#2b3a2f;font-size:1.1rem;">5</span></div>
+                    </div>
+                    <svg viewBox="0 0 200 55" style="width:100%;height:48px;">
+                        <polygon points="0,54 18,44 38,30 58,10 75,18 95,7 112,18 130,32 148,24 168,38 200,54" fill="url(#g1)"/>
+                        <polyline points="0,54 18,44 38,30 58,10 75,18 95,7 112,18 130,32 148,24 168,38 200,54" fill="none" stroke="#ef4444" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <!-- Forest -->
+                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:24px;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+                        <span class="font-display" style="font-size:1.35rem;color:#2b3a2f;">Forest Trail</span>
+                        <span style="background:#fff7ed;color:#ea580c;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;">21 km</span>
+                    </div>
+                    <div style="display:flex;gap:24px;margin-bottom:18px;">
+                        <div><span style="color:#9ca3af;font-size:.7rem;display:block;text-transform:uppercase;letter-spacing:.07em;">{{ __('Elevation') }}</span><span style="font-weight:700;color:#2b3a2f;font-size:1.1rem;">+500 m</span></div>
+                        <div><span style="color:#9ca3af;font-size:.7rem;display:block;text-transform:uppercase;letter-spacing:.07em;">{{ __('Aid Stations') }}</span><span style="font-weight:700;color:#2b3a2f;font-size:1.1rem;">2</span></div>
+                    </div>
+                    <svg viewBox="0 0 200 55" style="width:100%;height:48px;">
+                        <polygon points="0,54 28,40 58,22 88,30 118,16 150,28 180,40 200,54" fill="url(#g2)"/>
+                        <polyline points="0,54 28,40 58,22 88,30 118,16 150,28 180,40 200,54" fill="none" stroke="#f97316" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <!-- Shaitankol -->
+                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:24px;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+                        <span class="font-display" style="font-size:1.35rem;color:#2b3a2f;">Shaitankol</span>
+                        <span style="background:#fefce8;color:#ca8a04;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;">10 km</span>
+                    </div>
+                    <div style="display:flex;gap:24px;margin-bottom:18px;">
+                        <div><span style="color:#9ca3af;font-size:.7rem;display:block;text-transform:uppercase;letter-spacing:.07em;">{{ __('Elevation') }}</span><span style="font-weight:700;color:#2b3a2f;font-size:1.1rem;">+300 m</span></div>
+                        <div><span style="color:#9ca3af;font-size:.7rem;display:block;text-transform:uppercase;letter-spacing:.07em;">{{ __('Aid Stations') }}</span><span style="font-weight:700;color:#2b3a2f;font-size:1.1rem;">1</span></div>
+                    </div>
+                    <svg viewBox="0 0 200 55" style="width:100%;height:48px;">
                         <polygon points="0,54 35,42 70,28 100,34 140,20 175,36 200,54" fill="url(#g3)"/>
                         <polyline points="0,54 35,42 70,28 100,34 140,20 175,36 200,54" fill="none" stroke="#eab308" stroke-width="2" stroke-linejoin="round"/>
                     </svg>
