@@ -135,5 +135,10 @@
     "Confirm Password": "Confirm Password",
     "Already registered?": "Already registered?",
     "Logout": "Logout",
-    "Participate": "Participate"
+    "Participate": "Participate",
+    "Finalize your registration by completing the payment": "Finalize your registration by completing the payment",
+    "Total Amount": "Total Amount",
+    "Pay Now": "Pay Now",
+    "Secure Payment Processing": "Secure Payment Processing",
+    "← Back to registration": "← Back to registration"
 }

@@ -135,5 +135,10 @@
     "Confirm Password": "Құпия сөзді растау",
     "Already registered?": "Тіркелгенсіз бе?",
     "Logout": "Шығу",
-    "Participate": "Participate"
+    "Participate": "Қатысу",
+    "Finalize your registration by completing the payment": "Төлемді аяқтау арқылы тіркеуді аяқтаңыз",
+    "Total Amount": "Жалпы сома",
+    "Pay Now": "Қазір төлеу",
+    "Secure Payment Processing": "Қауіпсіз төлем өңдеу",
+    "← Back to registration": "← Тіркеуге оралу"
 }

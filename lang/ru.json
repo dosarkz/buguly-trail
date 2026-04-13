@@ -135,5 +135,10 @@
     "Confirm Password": "Подтвердите пароль",
     "Already registered?": "Уже зарегистрированы?",
     "Logout": "Выйти",
-    "Participate": "Участвовать"
+    "Participate": "Участвовать",
+    "Finalize your registration by completing the payment": "Завершите регистрацию, выполнив оплату",
+    "Total Amount": "Итоговая сумма",
+    "Pay Now": "Оплатить сейчас",
+    "Secure Payment Processing": "Безопасная обработка платежа",
+    "← Back to registration": "← Назад к регистрации"
 }

@@ -109,7 +109,7 @@ class RegistrationController extends Controller
             $key = '6BB0AC02E47BDF73D98FEB777F3B5294';
             $data = sprintf('6%s339813%s12%s8%s2KZ1014%s1032F2B2DD7E603A7AAF5E1BC35DEE1F6C9A',
                 $order->price,
-                $order->id,
+                $order->uuid,
                 config('services.bcc.merchant_id'),
                 '88888881',
                 $date,
@@ -122,7 +122,7 @@ class RegistrationController extends Controller
                 'form_params' => [
                     'AMOUNT' => $order->price,
                     'CURRENCY' => '398',
-                    'ORDER' => $order->id,
+                    'ORDER' => $order->uuid,
                     'DESC' => 'Registration '.$order->distance->name,
                     'MERCHANT' => config('services.bcc.merchant_id'),
                     'MERCH_NAME' => config('services.bcc.merch_name'),
