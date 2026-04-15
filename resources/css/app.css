@@ -69,14 +69,14 @@ body { font-family: 'DM Sans', sans-serif; margin: 0; padding: 0; }
 
 /* Mobile Menu */
 #mobile-menu {
-    position: absolute; top: 0;
+    position: fixed; top: 0; left: 0;
     background: white; z-index: 1000; padding: 24px;
     display: none; flex-direction: column;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s linear;
-    transform: translateX(100%);
-    opacity: 0;
-    pointer-events: none;
-    width: 100%;
+    width: 100%; height: 100dvh;
+}
+
+#mobile-menu.is-active {
+    display: flex;
 }
 
 .btn-sm {
@@ -89,11 +89,7 @@ body { font-family: 'DM Sans', sans-serif; margin: 0; padding: 0; }
 
 .route-row td { padding: 10px 5px; }
 
-#mobile-menu.is-active {
-    transform: translateX(0);
-    opacity: 1;
-    pointer-events: auto;
-}
+
 
 .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
 .mobile-menu-content { display: flex; flex-direction: column; overflow-y: auto; flex: 1; }

@@ -130,16 +130,8 @@
         const menu = document.getElementById('mobile-menu');
 
         const toggleMenu = (show) => {
-            if (show) {
-                menu.classList.add('is-active');
-                document.body.style.overflow = 'hidden';
-                // update display of #mobile-menu to flex
-                menu.style.display = 'flex';
-            } else {
-                menu.classList.remove('is-active');
-                document.body.style.overflow = '';
-                menu.style.display = 'none';
-            }
+            menu.classList.toggle('is-active', show);
+            document.body.style.overflow = show ? 'hidden' : '';
         };
 
         if (toggle && menu) {
