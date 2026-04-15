@@ -135,7 +135,7 @@
     <section id="routes" style="background:white;padding:88px 24px;">
         <div style="max-width:1200px;margin:0 auto;">
             <p style="color:#2d7d2b;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px;">{{ __('Pick your challenge') }}</p>
-            <h2 class="font-display" style="font-size:clamp(2.8rem,6vw,5rem);color:#2b3a2f;line-height:1.05;margin-bottom:12px;">{{ __('DISTANCES &') }}<br>{{ __('REGISTRATION') }}</h2>
+            <h2 class="font-display-h2">{{ __('DISTANCES &') }}<br>{{ __('REGISTRATION') }}</h2>
             <p style="color:#9ca3af;font-size:.88rem;line-height:1.7;max-width:540px;margin-bottom:48px;">
                 {{ __('Choose your distance, secure your slot, and prepare for the most memorable race of your year.') }}
                 {{ __('All prices include finisher medal, timing chip, and aid station access.') }}
@@ -264,7 +264,7 @@
                     </div>
                     <span class="route-card-slots">100 {{ __('slots') }}</span>
                     <p class="route-card-notes">{{ __('~50 km · 18+ · 5 aid stations · +996 m elevation') }}</p>
-                    <a href="{{ route('register', ['distance_id' => 1]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                    <a href="{{ route('register', ['distance_id' => 1]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded" style="width: 100%;">{{ __('Participate') }}</a>
                 </div>
 
                 <!-- Card 2 -->
@@ -279,7 +279,7 @@
                     </div>
                     <span class="route-card-slots">250 {{ __('slots') }}</span>
                     <p class="route-card-notes">{{ __('~21 km · 18+ · 2 aid stations · +500 m elevation') }}</p>
-                    <a href="{{ route('register', ['distance_id' => 2]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                    <a href="{{ route('register', ['distance_id' => 2]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded" style="width: 100%;">{{ __('Participate') }}</a>
                 </div>
 
                 <!-- Card 3 -->
@@ -294,7 +294,7 @@
                     </div>
                     <span class="route-card-slots">320 {{ __('slots') }}</span>
                     <p class="route-card-notes">{{ __('~10 km · 18+ · 1 aid station · +300 m elevation') }}</p>
-                    <a href="{{ route('register', ['distance_id' => 3]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                    <a href="{{ route('register', ['distance_id' => 3]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded" style="width: 100%;">{{ __('Participate') }}</a>
                 </div>
 
                 <!-- Card 4 -->
@@ -309,7 +309,7 @@
                     </div>
                     <span class="route-card-slots">50 {{ __('slots') }}</span>
                     <p class="route-card-notes">{{ __('Teens 13–17 · +30 m elevation gain') }}</p>
-                    <a href="{{ route('register', ['distance_id' => 4]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                    <a href="{{ route('register', ['distance_id' => 4]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded" style="width: 100%;">{{ __('Participate') }}</a>
                 </div>
 
                 <!-- Card 5 -->
@@ -324,7 +324,7 @@
                     </div>
                     <span class="route-card-slots">30 {{ __('slots') }}</span>
                     <p class="route-card-notes">{{ __('Children 9–12 · +10 m elevation gain') }}</p>
-                    <a href="{{ route('register', ['distance_id' => 5]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                    <a href="{{ route('register', ['distance_id' => 5]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded" style="width: 100%;">{{ __('Participate') }}</a>
                 </div>
 
                 <!-- Card 6 -->
@@ -339,7 +339,7 @@
                     </div>
                     <span class="route-card-slots">50 {{ __('slots') }}</span>
                     <p class="route-card-notes">{{ __('~10 km · All ages · 1 aid station · +300 m elevation') }}</p>
-                    <a href="{{ route('register', ['distance_id' => 6]) }}" class="btn-green" style="width: 100%;">{{ __('Register Now') }}</a>
+                    <a href="{{ route('register', ['distance_id' => 6]) }}" class="bg-lime-600 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded" style="width: 100%;">{{ __('Participate') }}</a>
                 </div>
             </div>
 
@@ -400,7 +400,7 @@
 
             <div class="elevation-cards-mobile show-mobile" style="margin-top: 32px;">
                 <!-- Ultra -->
-                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:24px;">
+                <div class="elevation-card-mb">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
                         <span class="font-display" style="font-size:1.35rem;color:#2b3a2f;">Bugyly Ultra</span>
                         <span style="background:#fee2e2;color:#dc2626;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;">50 km</span>
@@ -415,7 +415,7 @@
                     </svg>
                 </div>
                 <!-- Forest -->
-                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:24px;">
+                <div class="elevation-card-mb">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
                         <span class="font-display" style="font-size:1.35rem;color:#2b3a2f;">Forest Trail</span>
                         <span style="background:#fff7ed;color:#ea580c;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;">21 km</span>
@@ -430,7 +430,7 @@
                     </svg>
                 </div>
                 <!-- Shaitankol -->
-                <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:24px;">
+                <div class="elevation-card-mb">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
                         <span class="font-display" style="font-size:1.35rem;color:#2b3a2f;">Shaitankol</span>
                         <span style="background:#fefce8;color:#ca8a04;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;">10 km</span>

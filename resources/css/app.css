@@ -247,6 +247,10 @@ body { font-family: 'DM Sans', sans-serif; margin: 0; padding: 0; }
 .g-tall { grid-row: span 2; }
 .g-wide { grid-column: span 2; }
 
+.font-display-h2 {
+    font-size:clamp(2.8rem,6vw,5rem);color:#2b3a2f;line-height:1.05;margin-bottom:12px;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .gallery-grid { grid-template-columns: repeat(3, 1fr); }
@@ -266,6 +270,18 @@ body { font-family: 'DM Sans', sans-serif; margin: 0; padding: 0; }
     .g-tall { grid-row: span 2; }
     .g-wide { grid-column: span 2; }
     .stats-strip { grid-template-columns: repeat(2, 1fr) !important; }
+    .elevation-profile-cards {
+        display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:52px;
+    }
+
+    .font-display-h2 {
+        font-size: 2rem;
+    }
+
+    .elevation-card-mb {
+        background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:24px;
+        margin-bottom:20px;
+    }
 
     .route-cards-mobile {
         display: flex;
@@ -278,6 +294,7 @@ body { font-family: 'DM Sans', sans-serif; margin: 0; padding: 0; }
         border-radius: 16px;
         padding: 20px;
         box-shadow: 0 4px 12px rgba(0,0,0,.04);
+        margin-bottom: 20px;
     }
     .route-card-header {
         display: flex;
@@ -361,8 +378,11 @@ body { font-family: 'DM Sans', sans-serif; margin: 0; padding: 0; }
     .p-6.md\:p-10 { padding: 20px 16px; }
 }
 
-@media (max-width: 320px) {
+@media  (max-width: 430px) {
     #register-btn {display: none}
+}
+
+@media (max-width: 320px) {
     .auth-card { padding: 24px 16px; }
     .auth-title { font-size: 2.2rem; }
     .container-wide { padding: 0 12px; }
@@ -378,9 +398,9 @@ body { font-family: 'DM Sans', sans-serif; margin: 0; padding: 0; }
 }
 
 @media (min-width: 769px) {
-    .show-mobile { display: none !important; }
-    .route-cards-mobile { display: none !important; }
-    .elevation-cards-mobile { display: none !important; }
+    .show-mobile { display: none; }
+    .route-cards-mobile { display: none; }
+    .elevation-cards-mobile { display: none; }
 }
 
 
