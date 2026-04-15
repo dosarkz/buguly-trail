@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.common')
 
 @section('content')
     <div class="container mx-auto px-4 py-8">
@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1.5" for="id_intra">{{ __('Intra ID') }}</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5" for="id_intra">{{ __('Itra ID') }}</label>
                                     <input type="text" id="id_intra" name="id_intra"
                                            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-earth-500 focus:ring-4 focus:ring-earth-500/10 outline-none transition-all"
                                            value="{{ old('id_intra') }}"

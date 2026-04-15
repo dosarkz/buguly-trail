@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.common')
 
 @section('title', __('Sign In'))
 

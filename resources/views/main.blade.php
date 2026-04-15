@@ -8,7 +8,7 @@
             <!-- Event badge -->
             <div class="fade-up d1" style="margin-bottom:16px;">
                 <span class="badge-white">
-                     {{ __('July 12–13, 2026 · Qarqaraly, Kazakhstan') }}
+                     {{ __('July 25–26, 2026 · Qarqaraly, Kazakhstan') }}
                 </span>
             </div>
 
@@ -94,39 +94,39 @@
             <!-- Unified Photo Grid -->
             <div class="gallery-grid">
                 <div class="gallery-item g-large">
-                    <img src="https://images.unsplash.com/photo-1594882645126-14ac19a85b41?w=900&q=80" alt="Trail runner in mountains">
+                    <img src="{{ asset('storage/gallery/img-1.png') }}" alt="Trail runner in mountains">
                     <div class="gallery-overlay">
-                        <span class="gallery-tag">#BugylTrail</span>
+                        <span class="gallery-tag">#BugylyTrail</span>
                     </div>
                 </div>
                 <div class="gallery-item g-tall">
-                    <img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=700&q=80" alt="Runner on ridge">
+                    <img src="{{ asset('storage/gallery/img-2.png') }}" alt="Runner on ridge">
                     <div class="gallery-overlay">
-                        <span class="gallery-tag">#Skyrunning</span>
+                        <span class="gallery-tag">#BugylyTrail</span>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&q=80" alt="Mountain trail view">
+                    <img src="{{ asset('storage/gallery/img2.png') }}" alt="Mountain trail view">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80" alt="Race finish">
+                    <img src="{{ asset('storage/gallery/img1.jpg') }}" alt="Race finish">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80" alt="Mountain landscape">
+                    <img src="{{ asset('storage/gallery/img5.jpg') }}" alt="Mountain landscape">
                 </div>
                 <div class="gallery-item g-wide">
-                    <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&q=80" alt="Dawn running">
+                    <img src="{{ asset('storage/gallery/img-3.png') }}" alt="Dawn running">
                     <div class="gallery-overlay">
                         <span class="gallery-tag">{{ __('Feel the energy') }}</span>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1543941849-ab7a0c56ec88?w=600&q=80" alt="Forest trail">
+                    <img src="{{ asset('storage/gallery/hills.png') }}" alt="Forest trail">
                 </div>
             </div>
 
             <p style="text-align:center;margin-top:24px;color:rgba(255,255,255,.4);font-size:.8rem;">
-                {{ __('Follow #BugylTrail on Instagram for live race-day updates') }}
+                {{ __('Follow #BugylyTrail on Instagram for live race-day updates') }}
             </p>
         </div>
     </section>
@@ -344,12 +344,11 @@
             </div>
 
             <p style="text-align:center;margin-top:16px;color:#9ca3af;font-size:.75rem;">
-                * {{ __('Prices in Kazakhstani Tenge (₸). Early bird discounts available until June 1, 2025.') }}
+                * {{ __('Prices in Kazakhstani Tenge (₸).') }}
             </p>
 
             <!-- Elevation profile cards -->
             <div class="hidden-mobile" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:52px;">
-                <!-- Ultra -->
                 <div style="background:#f5efe6;border:1px solid #d6ebd5;border-radius:18px;padding:28px;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
                         <span class="font-display" style="font-size:1.5rem;color:#2b3a2f;">Bugyly Ultra</span>
@@ -466,7 +465,7 @@
 
             <p style="text-align:center;color:#9ca3af;font-size:.85rem;">
                 {{ __('Interested in sponsoring?') }}
-                <a href="mailto:sponsor@bugyltrail.kz" style="color:#2d7d2b;font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{ __('Get in touch →') }}</a>
+                <a href="mailto:info@bugylytrail.kz" style="color:#2d7d2b;font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{ __('Get in touch →') }}</a>
             </p>
         </div>
     </section>
@@ -477,14 +476,14 @@
             <p style="color:#7ab878;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;">{{ __('Follow our journey') }}</p>
             <h2 class="font-display" style="font-size:clamp(2.5rem,6vw,4.5rem);color:white;margin-bottom:16px;">{{ __('SHARE YOUR STORY') }}</h2>
             <p style="color:rgba(255,255,255,.55);font-size:.9rem;line-height:1.7;margin-bottom:28px;">
-                {{ __('Tag your training photos with #BugylTrail and get featured on our official page. Join a community of trail runners who love the mountains as much as you do.') }}
+                {{ __('Tag your training photos with #bugylytrail and get featured on our official page. Join a community of trail runners who love the mountains as much as you do.') }}
             </p>
-            <a href="https://instagram.com/bugyltrail" target="_blank"
+            <a href="https://instagram.com/bugyly_trail" target="_blank"
                style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#f59e0b,#ec4899,#8b5cf6);color:white;font-weight:600;padding:14px 30px;border-radius:999px;text-decoration:none;font-size:.92rem;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .2s,transform .2s;"
                onmouseover="this.style.opacity='.9';this.style.transform='scale(1.04)'"
                onmouseout="this.style.opacity='1';this.style.transform='scale(1)'">
                 <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                @bugyltrail
+                @bugylytrail
             </a>
         </div>
     </section>

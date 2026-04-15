@@ -10,6 +10,7 @@ use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -95,58 +96,69 @@ class RegistrationController extends Controller
     /**
      * Step 2: POST to external bank, then mark order paid.
      */
-    public function pay(Request $request, Order $order): ?RedirectResponse
+    public function pay(Request $request, Order $order): Response|RedirectResponse
     {
         if ($order->status !== Order::STATUS_PENDING) {
             return redirect()->route('registration.success', $order);
         }
 
         try {
-
-            $client = new Client(['verify' => false, 'timeout' => 300]);
-            $date = date('YmdHis');
+            $client = new Client([
+                'verify' => false, // отключает SSL проверку
+            ]);
+            //  date_default_timezone_set('Asia/Almaty');
+            $dt = (new \DateTime('now', new \DateTimeZone('Europe/London')))->modify('-1 hour');
+            $date = $dt->format('YmdHis');
 
             $key = '6BB0AC02E47BDF73D98FEB777F3B5294';
-            $data = sprintf('6%s339813%s12%s8%s2KZ1014%s1032F2B2DD7E603A7AAF5E1BC35DEE1F6C9A',
-                $order->price,
-                $order->uuid,
-                config('services.bcc.merchant_id'),
+            $nonce = bin2hex(random_bytes(16));
+
+            $data = sprintf('%s%s%s%s%s%s%s%s%s',
+                (int) $order->price,
+                '398',
+                $order->id,
+                config('services.bcc.merch_name'),
                 '88888881',
+                'KZ',
+                0,
                 $date,
+                0,
+                $nonce
             );
 
             $decodedKey = pack('H*', $key);
-            $psign = hash_hmac('sha1', $data, $decodedKey);
+            $psign = hash_hmac('sha1', "$data", $decodedKey);
+            //     dd($psign);
 
             $options = [
                 'form_params' => [
-                    'AMOUNT' => $order->price,
+                    'AMOUNT' => (int) $order->price,
                     'CURRENCY' => '398',
-                    'ORDER' => $order->uuid,
+                    'ORDER' => $order->id,
                     'DESC' => 'Registration '.$order->distance->name,
-                    'MERCHANT' => config('services.bcc.merchant_id'),
+                    'MERCHANT' => config('services.bcc.merchant'),
                     'MERCH_NAME' => config('services.bcc.merch_name'),
                     'MERCH_URL' => config('services.bcc.merch_url'),
                     'COUNTRY' => 'KZ',
                     'BRANDS' => 'VISA, Mastercard',
-                    'TERMINAL' => '88888888',
+                    'TERMINAL' => '88888881',
                     'TIMESTAMP' => $date,
-                    'MERCH_GMT' => '0',
-                    'TRTYPE' => '0',
-                    'BACKREF' => config('services.bcc.backref'),
+                    'MERCH_GMT' => 0,
+                    'TRTYPE' => 0,
+                    'BACKREF' => 'https://bugylytrail.kz/back/to/merchant/site',
                     'LANG' => 'ru',
-                    'NONCE' => 'F2B2DD7E603A7AAF5E1BC35DEE1F6C9A',
+                    'NONCE' => $nonce,
                     'P_SIGN' => $psign,
                     'MK_TOKEN' => 'MERCH',
                     'NOTIFY_URL' => config('services.bcc.notify_url'),
-                    'CLIENT_IP' => $request->ip(),
-                    'M_INFO' => 'ewoJImJyb3dzZXJTY3JlZW5IZWlnaHQiOiIxOTIwIiwKCSJicm93c2VyU2NyZWVuV2lkdGgiOiIxMDgwIiwKCSJtb2JpbGVQaG9uZSI6ewoJCSJjYyI6ICI3IiAsCgkJInN1YnNjcmliZXIiOiI3NDc1NTU4ODg4IgoJfQp9',
+                    'CLIENT_IP' => $request->getClientIp(),
+                    'M_INFO' => 'eyJicm93c2VyU2NyZWVuSGVpZ2h0Ijo4NjcsImJyb3dzZXJTY3JlZW5XaWR0aCI6MTQ2MywibW9iaWxlUGhvbmUiOnsiY2MiOiI3Iiwic3Vic2NyaWJlciI6Ijc0NzU1NTg4ODgifX0=',
                 ]];
+
             $ree = new \GuzzleHttp\Psr7\Request('POST', 'https://test3ds.bcc.kz:5445/cgi-bin/cgi_link');
             $res = $client->sendAsync($ree, $options)->wait();
-            echo $res->getBody();
 
-            return null;
+            return response($res->getBody()->getContents());
         } catch (\Throwable $e) {
             return back()->withErrors(['payment' => 'Payment service unavailable. Please try again later.', $e->getMessage()]);
         }
