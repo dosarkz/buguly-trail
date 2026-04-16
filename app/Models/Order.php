@@ -38,6 +38,13 @@ class Order extends Model
         return 'uuid';
     }
 
+    protected $appends = ['order_number'];
+
+    public function getOrderNumberAttribute()
+    {
+        return str_pad($this->id, 7, '0', STR_PAD_LEFT);
+    }
+
     protected $casts = [
         'paid_at' => 'datetime',
         'price' => 'decimal:2',

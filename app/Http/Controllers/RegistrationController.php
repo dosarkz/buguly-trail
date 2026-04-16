@@ -113,18 +113,30 @@ class RegistrationController extends Controller
             $key = '6BB0AC02E47BDF73D98FEB777F3B5294';
             $nonce = bin2hex(random_bytes(16));
 
-            $data = sprintf('%s%s%s%s%s%s%s%s%s',
-                (int) $order->price,
+            $data = sprintf('%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s',
+                strlen($order->price),
+                $order->price,
+                strlen('398'),
                 '398',
-                $order->id,
-                config('services.bcc.merch_name'),
+                strlen($order->order_number),
+                $order->order_number,
+                strlen('toobugulytrail.kz'),
+              'toobugulytrail.kz',   //  config('services.bcc.merch_name'),
+                strlen('88888881'),
                 '88888881',
+                strlen('KZ'),
                 'KZ',
+                strlen('0'),
                 0,
+                strlen($date),
                 $date,
+                strlen('0'),
                 0,
+                strlen($nonce),
                 $nonce
             );
+
+
 
             $decodedKey = pack('H*', $key);
             $psign = hash_hmac('sha1', "$data", $decodedKey);
@@ -132,9 +144,9 @@ class RegistrationController extends Controller
 
             $options = [
                 'form_params' => [
-                    'AMOUNT' => (int) $order->price,
+                    'AMOUNT' => $order->price,
                     'CURRENCY' => '398',
-                    'ORDER' => $order->id,
+                    'ORDER' => $order->order_number,
                     'DESC' => 'Registration '.$order->distance->name,
                     'MERCHANT' => config('services.bcc.merchant'),
                     'MERCH_NAME' => config('services.bcc.merch_name'),
