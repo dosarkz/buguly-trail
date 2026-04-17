@@ -14,16 +14,13 @@ class BankCenterCreditController extends Controller
     public function postpay(Request $request): RedirectResponse
     {
         if ($request->input('ACTION') != Order::BCC_ACTION_STATUS_SUCCESS || $request->input('RC') != '00') {
-            return redirect()->route('register.failure')->with('error', 'An error occurred. Please try again.');
+            abort(404);
         }
 
-        $order = Order::where('id', (int) $request->input('ORDER'))->first();
+        $order = Order::where('id', (int) $request->input('ORDER'))->firstOrFail();
 
-        if (! $order || $order->bcc_attributes == null ||
-            $order->bcc_attributes['NONCE'] != $request->input('NONCE')
-        ) {
-            return redirect()->route('register.failure')
-                ->with('error', 'An error occurred. Please try again.');
+        if ($order->bcc_attributes['NONCE'] != $request->input('NONCE')) {
+            abort(404);
         }
 
         if ($order->status == Order::STATUS_PAID) {
