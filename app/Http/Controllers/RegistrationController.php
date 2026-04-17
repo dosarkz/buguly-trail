@@ -89,9 +89,9 @@ class RegistrationController extends Controller
     public function payment(Order $order): View
     {
         $order->load(['user', 'distance']);
+
         return view('auth.payment', compact('order'));
     }
-
 
     public function pay(Request $request, Order $order): Response|RedirectResponse
     {
@@ -100,13 +100,9 @@ class RegistrationController extends Controller
         }
 
         try {
-            $client = new Client([
-                'verify' => false, // отключает SSL проверку
-            ]);
-            //  date_default_timezone_set('Asia/Almaty');
+            $client = new Client(['verify' => false]);
             $dt = (new \DateTime('now', new \DateTimeZone('Europe/London')))->modify('-1 hour');
             $date = $dt->format('YmdHis');
-
             $nonce = bin2hex(random_bytes(16));
 
             $data = sprintf('%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s',
@@ -133,8 +129,7 @@ class RegistrationController extends Controller
             );
 
             $decodedKey = pack('H*', config('services.bcc.secret'));
-            $psign = hash_hmac('sha1', "$data", $decodedKey);
-            //     dd($psign);
+            $pSign = hash_hmac('sha1', "$data", $decodedKey);
 
             $options = [
                 'form_params' => [
@@ -154,14 +149,18 @@ class RegistrationController extends Controller
                     'BACKREF' => config('services.bcc.backref'),
                     'LANG' => 'ru',
                     'NONCE' => $nonce,
-                    'P_SIGN' => $psign,
+                    'P_SIGN' => $pSign,
                     'MK_TOKEN' => 'MERCH',
                     'NOTIFY_URL' => config('services.bcc.notify_url'),
                     'CLIENT_IP' => $request->getClientIp(),
                     'M_INFO' => 'eyJicm93c2VyU2NyZWVuSGVpZ2h0Ijo4NjcsImJyb3dzZXJTY3JlZW5XaWR0aCI6MTQ2MywibW9iaWxlUGhvbmUiOnsiY2MiOiI3Iiwic3Vic2NyaWJlciI6Ijc0NzU1NTg4ODgifX0=',
                 ]];
 
-            $ree = new \GuzzleHttp\Psr7\Request('POST', 'https://test3ds.bcc.kz:5445/cgi-bin/cgi_link');
+            $order->updateOrFail([
+                'bcc_attributes' => $options['form_params'],
+            ]);
+
+            $ree = new \GuzzleHttp\Psr7\Request('POST', config('services.bcc.url'));
             $res = $client->sendAsync($ree, $options)->wait();
 
             return response($res->getBody()->getContents());

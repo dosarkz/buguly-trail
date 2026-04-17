@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 class Order extends Model
 {
+    public const int BCC_ACTION_STATUS_SUCCESS = 0;
+
     public const int STATUS_PENDING = 0;
 
     public const int STATUS_PAID = 1;
@@ -22,6 +24,8 @@ class Order extends Model
         'price',
         'status',
         'paid_at',
+        'bcc_attributes',
+        'bcc_response',
     ];
 
     protected static function booted(): void
@@ -48,6 +52,7 @@ class Order extends Model
     protected $casts = [
         'paid_at' => 'datetime',
         'price' => 'decimal:2',
+        'bcc_attributes' => 'array',
     ];
 
     public function user(): BelongsTo

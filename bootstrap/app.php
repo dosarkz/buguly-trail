@@ -14,7 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->preventRequestForgery(except: [
-            'bcc/*',
+            '/bcc/postpay',
+            '/bcc/callback',
         ]);
         $middleware->web(append: [
             SetLocale::class,

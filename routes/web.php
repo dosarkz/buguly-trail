@@ -3,13 +3,13 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\BankCenterCreditController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BankCenterCreditController;
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('main');
 
 // Auth Routes
 Route::middleware('guest')->group(function () {
@@ -22,8 +22,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-    Route::any('/bcc/postpay',[BankCenterCreditController::class, 'postpay'])->name('postpay');
-    Route::any('/bcc/callback',[BankCenterCreditController::class, 'callback'])->name('callback');
+    Route::any('/bcc/postpay', [BankCenterCreditController::class, 'postpay'])->name('postpay');
+    Route::any('/bcc/callback', [BankCenterCreditController::class, 'callback'])->name('callback');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
