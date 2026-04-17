@@ -19,7 +19,8 @@ class BankCenterCreditController extends Controller
 
         $order = Order::where('id', (int) $request->input('ORDER'))->first();
 
-        if (! $order || $order->bcc_attributes['NONCE'] != $request->input('NONCE')
+        if (! $order || $order->bcc_attributes == null ||
+            $order->bcc_attributes['NONCE'] != $request->input('NONCE')
         ) {
             return redirect()->route('register.failure')
                 ->with('error', 'An error occurred. Please try again.');
