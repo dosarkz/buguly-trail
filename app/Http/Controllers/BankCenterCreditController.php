@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\PaymentSuccessful;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,15 +14,21 @@ class BankCenterCreditController extends Controller
 {
     public function postpay(Request $request): RedirectResponse
     {
-        if ($request->input('ACTION') != Order::BCC_ACTION_STATUS_SUCCESS || $request->input('RC') != '00') {
-            abort(404);
-        }
-
         $order = Order::where('id', (int) $request->input('ORDER'))->firstOrFail();
+
+        if ($request->input('ACTION') != Order::BCC_ACTION_STATUS_SUCCESS || $request->input('RC') != '00') {
+            $order->status = Order::STATUS_FAILED;
+            $order->save();
+            Log::error('Payment failed request:', $request->all());
+            Log::error('Payment failed order:', $order->id);
+
+            return redirect()->route('login');
+        }
 
         if ($order->bcc_attributes == null || $order->bcc_attributes['NONCE'] != $request->input('NONCE')) {
             Log::error('Invalid nonce', $request->all());
-            abort(404);
+
+            return redirect()->route('login');
         }
 
         if ($order->status == Order::STATUS_PAID) {
@@ -34,6 +41,7 @@ class BankCenterCreditController extends Controller
             'ACTION', 'RC', 'RC_TEXT', 'APPROVAL', 'TRAN_AMOUNT', 'CARD_MASK', 'TERMINAL', 'TRTYPE',
             'AMOUNT', 'ORDER', 'RRN', 'MERCHANT', 'INT_REF', 'NONCE', 'MERCH_TOKEN_ID',
         ]);
+        $order->user->update(['status' => User::STATUS_ACTIVE]);
         $order->save();
 
         Mail::to($order->user->email)->queue(new PaymentSuccessful($order));

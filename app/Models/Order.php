@@ -28,6 +28,11 @@ class Order extends Model
         'bcc_response',
     ];
 
+    public function sportEvent(): BelongsTo
+    {
+        return $this->belongsTo(SportEvent::class);
+    }
+
     protected static function booted(): void
     {
         static::creating(function ($model) {

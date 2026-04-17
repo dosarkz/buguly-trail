@@ -13,6 +13,7 @@
             <a href="/#about" class="nav-link">{{ __('About') }}</a>
             <a href="/#routes" class="nav-link">{{ __('Routes') }}</a>
             <a href="/#gallery" class="nav-link">{{ __('Gallery') }}</a>
+            <a href="{{route('participants')}}" class="nav-link">{{ __('Participants') }}</a>
             <a href="/#partners" class="nav-link">{{ __('Partners') }}</a>
         </div>
 
@@ -30,7 +31,7 @@
 
             @auth
                 <div class="flex-center" style="gap: 12px;">
-                    <a href="{{ url('/dashboard') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                    <a href="{{ url('/profile') }}" class="bg-transparent hover:bg-lime-800 text-lime-700 font-semibold hover:text-white py-2 px-4 border border-lime-500 hover:border-transparent rounded">
                         {{ __('Dashboard') }}
                     </a>
                     <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
@@ -82,6 +83,10 @@
                 {{ __('Gallery') }}
                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
+            <a href="{{route('participants')}}" class="mobile-nav-link">
+                {{ __('Participants') }}
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
             <a href="/#partners" class="mobile-nav-link">
                 {{ __('Partners') }}
                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -89,7 +94,7 @@
 
             <div style="margin-top: 24px;">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="mobile-nav-link">
+                    <a href="{{ url('/profile') }}" class="mobile-nav-link">
                         {{ __('Dashboard') }}
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>

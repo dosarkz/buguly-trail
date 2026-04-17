@@ -4,12 +4,16 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BankCenterCreditController;
+use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('main');
 })->name('main');
+
+Route::get('/participants', [ParticipantController::class, 'index'])->name('participants');
 
 // Auth Routes
 Route::middleware('guest')->group(function () {
@@ -28,10 +32,13 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+});
+
 // Registration routes
 Route::get('/register', [RegistrationController::class, 'create'])->name('register');
 Route::post('/register', [RegistrationController::class, 'store'])->name('register.store');
-
 
 Route::group(['where' => ['order' => '[a-f0-9\-]{36}']], function () {
     Route::get('/register/payment/{order}', [RegistrationController::class, 'payment'])->name('register.payment');

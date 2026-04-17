@@ -90,6 +90,9 @@ class RegistrationController extends Controller
 
     public function payment(Order $order): View
     {
+        if ($order->status !== Order::STATUS_PENDING) {
+
+        }
         $order->load(['user', 'distance']);
 
         return view('auth.payment', compact('order'));
@@ -177,6 +180,7 @@ class RegistrationController extends Controller
     public function success(Order $order): View
     {
         $order->load(['user', 'distance']);
+
         return view('auth.success', compact('order'));
     }
 }
