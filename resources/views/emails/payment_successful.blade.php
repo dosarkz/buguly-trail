@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Оплата успешно завершена - Buguly Trail</title>
+    <title>{{ __('Payment Successful - Buguly Trail') }}</title>
 </head>
 <body>
-    <h1>Спасибо за оплату!</h1>
-    <p>Ваша регистрация на Buguly Trail успешно подтверждена.</p>
+    <h1>{{ __('Thank you for your payment!') }}</h1>
+    <p>{{ __('Your registration for Buguly Trail has been successfully confirmed.') }}</p>
 
-    <h3>Детали заказа:</h3>
+    <h3>{{ __('Order Details:') }}</h3>
     <ul>
-        <li><strong>Номер заказа:</strong> {{ $order->order_number }}</li>
-        <li><strong>Дистанция:</strong> {{ $order->distance->name }} ({{ $order->distance->distance }})</li>
-        <li><strong>Сумма:</strong> {{ $order->price }} KZT</li>
-        <li><strong>Дата оплаты:</strong> {{ $order->paid_at->format('d.m.Y H:i') }}</li>
+        <li><strong>{{ __('Order #') }}:</strong> {{ $order->order_number }}</li>
+        <li><strong>{{ __('Distance') }}:</strong> {{ $order->distance->name }} ({{ $order->distance->distance }})</li>
+        <li><strong>{{ __('Amount Paid') }}:</strong> {{ $order->price }} KZT</li>
+        <li><strong>{{ __('Paid at') }}:</strong> {{ $order->paid_at->format('d.m.Y H:i') }}</li>
     </ul>
 
-    <p>Мы ждем вас на старте!</p>
+    <p>{{ __('We are waiting for you at the start!') }}</p>
 
-    <p>Если у вас возникли вопросы, пожалуйста, свяжитесь с нами.</p>
+    <p>{{ __('If you have any questions, please contact us.') }}</p>
 </body>
 </html>

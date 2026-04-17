@@ -7,6 +7,7 @@ use App\Mail\RegistrationCredentialsMail;
 use App\Models\Order;
 use App\Models\SportEventDistance;
 use App\Models\User;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -48,6 +49,7 @@ class RegistrationController extends Controller
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
+                'date_of_birth' => Carbon::parse($data['date_of_birth'])->format('d-m-Y'),
                 'gender' => $data['gender'],
                 'phone' => $data['phone'],
                 'emergency_phone' => $data['emergency_number'],
@@ -175,7 +177,6 @@ class RegistrationController extends Controller
     public function success(Order $order): View
     {
         $order->load(['user', 'distance']);
-
         return view('auth.success', compact('order'));
     }
 }

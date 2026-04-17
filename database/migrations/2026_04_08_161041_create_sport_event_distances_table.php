@@ -70,6 +70,28 @@ return new class extends Migration
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'sport_event_id' => 1,
+                'name' => 'Kids trail',
+                'slots' => 30,
+                'distance' => '1 km',
+                'description' => 'детский забег (9-12), набор высоты -10м;',
+                'price' => 3000,
+                'status' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'sport_event_id' => 1,
+                'name' => 'Nordic Walking',
+                'slots' => 50,
+                'distance' => '10 km +',
+                'description' => 'Скандинавская ходьба, около 10 км, от 18 лет, 1 пункт питания, набор высоты ~300м;',
+                'price' => 12000,
+                'status' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 

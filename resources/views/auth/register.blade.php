@@ -66,6 +66,13 @@
                                 </div>
 
                                 <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1.5" for="date_of_birth">{{ __('Date of birth') }} <span class="text-red-500">*</span></label>
+                                    <input type="date" id="date_of_birth" name="date_of_birth"
+                                           class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-earth-500 focus:ring-4 focus:ring-earth-500/10 outline-none transition-all @error('date_of_birth') border-red-300 bg-red-50 @enderror"
+                                           value="{{ old('date_of_birth') }}">
+                                </div>
+
+                                <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1.5">{{ __('Gender') }} <span class="text-red-500">*</span></label>
                                     <div class="flex items-center space-x-6 py-1">
                                         <label class="flex items-center space-x-3 cursor-pointer group">
@@ -243,7 +250,7 @@
                                                    class="w-6 h-6 text-earth-600 border-gray-300 rounded-lg focus:ring-earth-500 focus:ring-offset-0 transition-all">
                                         </div>
                                         <div class="text-sm text-gray-500 leading-relaxed group-hover:text-gray-700 transition-colors">
-                                            {{ __('I agree to the') }} <a href="#" class="text-earth-600 font-semibold hover:underline underline-offset-4">{{ __('Privacy Policy Link') }}</a> {{ __('and') }}
+                                            {{ __('I agree to the') }} <a href="{{asset('storage/privacy/policy-ru.pdf')}}" target="_blank" class="text-earth-600 font-semibold hover:underline underline-offset-4">{{ __('Privacy Policy Link') }}</a> {{ __('and') }}
                                             <a href="#" class="text-earth-600 font-semibold hover:underline underline-offset-4">{{ __('Terms of Participation Link') }}</a>
                                             <p class="mt-1 text-xs opacity-75">{{ __('Privacy terms description') }}</p>
                                         </div>
