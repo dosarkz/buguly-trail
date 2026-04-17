@@ -19,7 +19,8 @@ class BankCenterCreditController extends Controller
 
         $order = Order::where('id', (int) $request->input('ORDER'))->firstOrFail();
 
-        if ($order->bcc_attributes['NONCE'] != $request->input('NONCE')) {
+        if ($order->bcc_attributes == null || $order->bcc_attributes['NONCE'] != $request->input('NONCE')) {
+            Log::error('Invalid nonce', $request->all());
             abort(404);
         }
 
