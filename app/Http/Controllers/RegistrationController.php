@@ -89,13 +89,10 @@ class RegistrationController extends Controller
     public function payment(Order $order): View
     {
         $order->load(['user', 'distance']);
-
         return view('auth.payment', compact('order'));
     }
 
-    /**
-     * Step 2: POST to external bank, then mark order paid.
-     */
+
     public function pay(Request $request, Order $order): Response|RedirectResponse
     {
         if ($order->status !== Order::STATUS_PENDING) {
@@ -110,7 +107,6 @@ class RegistrationController extends Controller
             $dt = (new \DateTime('now', new \DateTimeZone('Europe/London')))->modify('-1 hour');
             $date = $dt->format('YmdHis');
 
-            $key = '6BB0AC02E47BDF73D98FEB777F3B5294';
             $nonce = bin2hex(random_bytes(16));
 
             $data = sprintf('%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s',
@@ -120,10 +116,10 @@ class RegistrationController extends Controller
                 '398',
                 strlen($order->order_number),
                 $order->order_number,
-                strlen('toobugulytrail.kz'),
-              'toobugulytrail.kz',   //  config('services.bcc.merch_name'),
-                strlen('88888881'),
-                '88888881',
+                strlen(config('services.bcc.merchant')),
+                config('services.bcc.merchant'),
+                strlen(config('services.bcc.terminal')),
+                config('services.bcc.terminal'),
                 strlen('KZ'),
                 'KZ',
                 strlen('0'),
@@ -136,9 +132,7 @@ class RegistrationController extends Controller
                 $nonce
             );
 
-
-
-            $decodedKey = pack('H*', $key);
+            $decodedKey = pack('H*', config('services.bcc.secret'));
             $psign = hash_hmac('sha1', "$data", $decodedKey);
             //     dd($psign);
 
@@ -153,11 +147,11 @@ class RegistrationController extends Controller
                     'MERCH_URL' => config('services.bcc.merch_url'),
                     'COUNTRY' => 'KZ',
                     'BRANDS' => 'VISA, Mastercard',
-                    'TERMINAL' => '88888881',
+                    'TERMINAL' => config('services.bcc.terminal'),
                     'TIMESTAMP' => $date,
                     'MERCH_GMT' => 0,
                     'TRTYPE' => 0,
-                    'BACKREF' => 'https://bugylytrail.kz/back/to/merchant/site',
+                    'BACKREF' => config('services.bcc.backref'),
                     'LANG' => 'ru',
                     'NONCE' => $nonce,
                     'P_SIGN' => $psign,
